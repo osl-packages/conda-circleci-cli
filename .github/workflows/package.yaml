@@ -32,7 +32,7 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          environment-file: conda/dev.yaml
+          environment-file: conda/build.yaml
           channels: conda-forge,nodefaults
           activate-environment: conda-circleci-cli
           auto-update-conda: true
