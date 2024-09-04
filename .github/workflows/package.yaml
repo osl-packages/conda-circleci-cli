@@ -45,11 +45,13 @@ jobs:
         run: makim conda.build
 
       - name: check results
-        run: ls /usr/share/miniconda3/envs/conda-build/conda-bld/noarch/circleci-cli-*.tar.bz2
+        run: ls /home/runner/miniconda3/envs/conda-circleci-cli/conda-bld/noarch/circleci-cli-*.tar.bz2
 
       - name: publish conda package
         env: # Or as an environment variable
           ANACONDA_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
         if: ${{ success() && (github.event_name == 'schedule') || github.event_name == 'workflow_dispatch'}}
         run: |
-          anaconda --token $ANACONDA_TOKEN upload --user opensciencelabs --skip-existing /usr/share/miniconda3/envs/conda-build/conda-bld/noarch/circleci-cli-*.tar.bz2
+          anaconda --token $ANACONDA_TOKEN upload \
+            --user opensciencelabs --skip-existing \
+            /home/runner/miniconda3/envs/conda-circleci-cli/conda-bld/noarch/circleci-cli-*.tar.bz2
