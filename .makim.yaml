@@ -1,0 +1,17 @@
+version: 1.0
+groups:
+  template:
+    tasks:
+      render:
+        help: Run the preparation recipe script.
+        run: |
+          scripts/prepare-recipe.sh
+
+  conda:
+    tasks:
+
+      build:
+        help: Build conda package and purge previous builds.
+        run: |
+          cd recipe
+          conda build purge && conda mambabuild .

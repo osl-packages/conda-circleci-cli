@@ -1,0 +1,40 @@
+{% set version = "__VERSION__" %}
+
+package:
+  name: circleci-cli
+  version: {{ version }}
+
+source:
+  path: ../src/circleci-cli
+
+build:
+  number: 0
+  noarch: generic
+
+requirements:
+  host:
+    - git
+    - bash
+    - curl
+    - gzip
+    - tar
+  build:
+    - go
+
+test:
+  commands:
+    - circleci help
+
+about:
+  home: "https://circleci-public.github.io/circleci-cli/"
+  summary: "This is CircleCI's command-line application."
+  license: MIT
+  summary: |
+    This project is the seed for CircleCI's new command-line application.
+    For more help, see the documentation here: https://circleci.com/docs/2.0/local-cli/
+  dev_url: "https://github.com/CircleCI-Public/circleci-cli"
+  doc_url: "https://circleci-public.github.io/circleci-cli/"
+
+extra:
+  recipe-maintainers:
+    - xmnlab
